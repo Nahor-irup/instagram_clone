@@ -38,7 +38,7 @@ dependencies:
   sliver_tools: ^0.2.12
   boxy: ^2.2.0
   faker: ^2.1.0
-
+  dot_navigation_bar: ^1.0.2
 
 dev_dependencies:
   flutter_test:
