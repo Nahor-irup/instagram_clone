@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
-  final PageController pageController = PageController();
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +20,20 @@ class _HomePageState extends State<HomePage> {
       // appBar: AppBar(
       //   backgroundColor: Colors.transparent,
       // ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (value) {
-          setState(() {
-            currentIndex = value;
-          });
-        },
+      body: IndexedStack(
+        index: currentIndex,
         children: [
-          HomeScreen(),
+          HomeScreen(scrollController: scrollController),
           ProfileScreen(),
         ],
       ),
-      extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color.fromRGBO(249, 42, 123, 1.0),
         currentIndex: currentIndex,
-        selectedItemColor: Colors.teal,
         onTap: (value) {
           setState(() {
-            currentIndex = value;
-            print(currentIndex);
-            pageController.animateToPage(
-                value, duration: Duration(milliseconds: 300),
-                curve: Curves.linear);
+            scrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.linear);
+            currentIndex=value;
           });
         },
         items: [

@@ -1,11 +1,11 @@
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/Model/profile_model.dart';
+import 'package:profile/View/profile/profile_screen.dart';
 
-class UserPost extends StatelessWidget {
+class UserFeedPost extends StatelessWidget {
   final int index;
 
-  const UserPost({Key? key, required this.index}) : super(key: key);
+  const UserFeedPost({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +26,23 @@ class UserPost extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   child: Image.asset(
                     profileList[index].img,
-                    height: 55,
-                    width: 55,
+                    height: 35,
+                    width: 35,
                     fit: BoxFit.cover,
                   ),
                 ),
                 SizedBox(width: 10),
-                Text(
-                  profileList[index].username.trim(),
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(index: index,),));
+                  },
+                  child: Text(
+                    profileList[index].username.trim(),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Spacer(),
                 Icon(Icons.more_vert),
@@ -49,6 +54,7 @@ class UserPost extends StatelessWidget {
           Container(
             // color: Colors.green,
             height: 300,
+            width: MediaQuery.of(context).size.width,
             child: FadeInImage(
               placeholder: AssetImage("assets/img/placeHolder.png"),
               image: AssetImage(profileList[index].img),
@@ -89,6 +95,8 @@ class UserPost extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 RichText(
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   text: TextSpan(
                     text: "username ",
                     style: TextStyle(
@@ -98,11 +106,10 @@ class UserPost extends StatelessWidget {
                     ),
                     children: [
                       TextSpan(
-                        text: Faker().lorem.sentence(),
+                        text: "loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm loerm ",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.normal,
-                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
