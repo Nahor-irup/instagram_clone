@@ -1,4 +1,3 @@
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDescriptionScreen extends StatelessWidget {
@@ -6,12 +5,15 @@ class ProfileDescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String arguments = ModalRoute.of(context)?.settings.arguments as String;
-
+    final String arguments =
+        ModalRoute.of(context)?.settings.arguments as String;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile",style: TextStyle(color: Colors.white),),
+        title: Text(
+          "Profile",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.teal,
         centerTitle: true,
         iconTheme: IconThemeData(

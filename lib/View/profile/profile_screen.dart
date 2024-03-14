@@ -1,13 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:profile/View/profile/widget/profile_grid.dart';
 import 'package:profile/View/widget/line_widget.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../Model/profile_model.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   final int? index;
 
   const ProfileScreen({Key? key, this.index}) : super(key: key);
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  File? _selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +39,39 @@ class ProfileScreen extends StatelessWidget {
                       padding: EdgeInsets.all(2),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(60),
-                        child: Image.asset(
-                          index != null
-                              ? profileList[index!].img
-                              : "assets/img/pp.jpg",
-                          fit: BoxFit.cover,
-                        ),
+                        child: Stack(
+                          children: [
+                            _selectedImage != null
+                                ? Image.file(
+                              _selectedImage!,
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width,
+                            )
+                                : Image.asset(
+                              widget.index != null
+                                  ? profileList[widget.index!].img
+                                  : "assets/img/pp.jpg",
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                            Positioned(
+                              bottom: 3,
+                              right: 10,
+                              child: GestureDetector(
+                                onTap: _pickImage,
+                                child: Container(
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle, color: Colors.white),
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                       ),
                     ),
                     SizedBox(width: 20),
@@ -43,8 +79,8 @@ class ProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          index != null
-                              ? profileList[index!].name
+                          widget.index != null
+                              ? profileList[widget.index!].name
                               : "Rohan Puri",
                           style: TextStyle(
                             color: Colors.black,
@@ -79,8 +115,8 @@ class ProfileScreen extends StatelessWidget {
                                 backgroundColor: Colors.black,
                                 minimumSize: Size(5, 35),
                               ),
-                              onPressed: () {
-                                Share.share("Hello");
+                              onPressed: () async {
+                                // await Share.share("Hello",subject: "Welcome");
                               },
                               child: Icon(
                                 Icons.share,
@@ -178,6 +214,12 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
+  Future<void> _pickImage() async {
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _selectedImage = File(pickedImage.path);
+      });
+    }
+  }
 }
-
-

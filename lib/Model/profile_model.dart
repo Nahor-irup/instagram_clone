@@ -12,10 +12,14 @@ ProfileModel(username:"_rohan",name: "Rohan Puri",img: "assets/img/1.jpg"),
 ProfileModel(username:"routineofnepalbanda",name: "Routine of Nepal Banda",img: "assets/img/2.jpg"),
   ProfileModel(username:"luffy.kaido",name: "One Piece",img: "assets/img/7.jpg"),
   ProfileModel(username:"_giri.sanjeev",name: "Sanjeev Giri",img: "assets/img/3.jpg"),
-ProfileModel(username:"food.nepal",name: "Nepal Food",img: "assets/img/4.jpg"),
+ProfileModel(username:"food.nepal",name: "Nepal Food",img: "assets/img/7.jpg"),
 ProfileModel(username:"__irup",name: "Nahor Irup",img: "assets/img/5.jpg"),
 ProfileModel(username:"game.room",name: "Astra Byte",img: "assets/img/6.jpg"),
 ProfileModel(username:"gamer_me",name: "Gamers Me",img: "assets/img/8.jpg"),
+ProfileModel(username:"1",name: "Gamers Me",img: "assets/img/4.jpg"),
+ProfileModel(username:"game2r_me",name: "Gamers Me",img: "assets/img/8.jpg"),
+ProfileModel(username:"22",name: "Gamers Me",img: "assets/img/8.jpg"),
+ProfileModel(username:"3",name: "Gamers Me",img: "assets/img/7.jpg"),
 ];
 
 /*

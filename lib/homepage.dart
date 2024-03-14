@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'View/home/home_screen.dart';
 import 'View/profile/profile_screen.dart';
+import 'View/search/search_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
         index: currentIndex,
         children: [
           HomeScreen(scrollController: scrollController),
+          SearchScreen(),
           ProfileScreen(),
         ],
       ),
@@ -40,6 +42,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Search",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
